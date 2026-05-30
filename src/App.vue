@@ -47,7 +47,7 @@ export default {
       readiness: {
         status: "loading",
         checks: {},
-        blockers: [],
+        submission_inputs: [],
         artifacts: [],
       },
       impact: {

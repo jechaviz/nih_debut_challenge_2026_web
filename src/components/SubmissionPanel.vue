@@ -2,7 +2,7 @@
   <section class="panel p-4">
     <div class="flex items-center justify-between gap-3">
       <div>
-        <h2 class="m-0 text-lg font-850">Submission Gate</h2>
+        <h2 class="m-0 text-lg font-850">Submission Packet</h2>
         <p class="m-0 text-sm color-slate-600">{{ readiness.status }}</p>
       </div>
       <i data-lucide="shield-check" class="h-5 w-5 color-blue-700"></i>
@@ -14,9 +14,9 @@
       </div>
     </dl>
     <div class="mt-4 grid gap-2">
-      <strong>External-only items</strong>
+      <strong>Submission inputs</strong>
       <ul class="m-0 grid gap-2 pl-5 text-sm color-slate-700">
-        <li v-for="item in readiness.blockers" :key="item">{{ item }}</li>
+        <li v-for="item in readiness.submission_inputs" :key="item">{{ item }}</li>
       </ul>
     </div>
   </section>
