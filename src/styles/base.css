@@ -87,16 +87,19 @@ button {
 
 table {
   width: 100%;
-  min-width: 850px;
+  min-width: 740px;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 th,
 td {
-  padding: 12px;
+  padding: 10px;
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 th {
@@ -111,8 +114,39 @@ th {
     padding: 12px;
   }
 
+  table {
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+  }
+
   th,
   td {
-    padding: 10px;
+    border-bottom: 0;
+    padding: 8px 12px;
+  }
+
+  td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
   }
 }

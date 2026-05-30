@@ -30,12 +30,12 @@
         </thead>
         <tbody>
           <tr v-for="item in filtered" :key="item.id">
-            <td><strong>{{ item.id }}</strong><br><span class="text-sm color-slate-500">{{ item.age }} / {{ item.sex }}</span></td>
-            <td>{{ item.egfr_ml_min_1_73m2 }}</td>
-            <td>{{ item.gfr_stage }} / {{ item.albuminuria_stage }}</td>
-            <td><span :class="riskClass(item.risk_band)">{{ label(item.risk_band) }}</span></td>
-            <td>{{ label(item.action_key) }}</td>
-            <td class="max-w-115">{{ item.recommendation }}</td>
+            <td data-label="Case"><strong>{{ item.id }}</strong><br><span class="text-sm color-slate-500">{{ item.age }} / {{ item.sex }}</span></td>
+            <td data-label="eGFR">{{ item.egfr_ml_min_1_73m2 }}</td>
+            <td data-label="Stages">{{ item.gfr_stage }} / {{ item.albuminuria_stage }}</td>
+            <td data-label="Risk"><span :class="riskClass(item.risk_band)">{{ label(item.risk_band) }}</span></td>
+            <td data-label="Action">{{ label(item.action_key) }}</td>
+            <td data-label="Recommendation">{{ item.recommendation }}</td>
           </tr>
           <tr v-if="filtered.length === 0">
             <td colspan="6">No cases match this filter.</td>

@@ -4,7 +4,7 @@
     <main class="work-surface grid gap-5">
       <MetricStrip :summary="summary" />
 
-      <section class="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+      <section class="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.85fr)]">
         <CaseTable :findings="summary.findings" />
         <div class="grid gap-4 content-start">
           <RiskMatrix :summary="summary" />
@@ -16,16 +16,16 @@
 </template>
 
 <script>
+import TopBar from "./components/TopBar.vue";
+import MetricStrip from "./components/MetricStrip.vue";
+import CaseTable from "./components/CaseTable.vue";
+import RiskMatrix from "./components/RiskMatrix.vue";
+import SubmissionPanel from "./components/SubmissionPanel.vue";
+
 const runtime = window.renalcueRuntime;
 
 export default {
-  components: {
-    TopBar: Vue.defineAsyncComponent(() => load("./src/components/TopBar.vue")),
-    MetricStrip: Vue.defineAsyncComponent(() => load("./src/components/MetricStrip.vue")),
-    CaseTable: Vue.defineAsyncComponent(() => load("./src/components/CaseTable.vue")),
-    RiskMatrix: Vue.defineAsyncComponent(() => load("./src/components/RiskMatrix.vue")),
-    SubmissionPanel: Vue.defineAsyncComponent(() => load("./src/components/SubmissionPanel.vue")),
-  },
+  components: { TopBar, MetricStrip, CaseTable, RiskMatrix, SubmissionPanel },
   data() {
     return {
       summary: {
@@ -62,19 +62,4 @@ export default {
     this.$nextTick(runtime.refreshIcons);
   },
 };
-
-function load(path) {
-  return window["vue3-sfc-loader"].loadModule(path, {
-    moduleCache: { vue: Vue },
-    async getFile(url) {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`${url} ${response.status}`);
-      return response.text();
-    },
-    addStyle(textContent) {
-      const style = Object.assign(document.createElement("style"), { textContent });
-      document.head.appendChild(style);
-    },
-  });
-}
 </script>
